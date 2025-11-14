@@ -1,5 +1,5 @@
-# Karthikvenugopal.github.io
+# karthikvenugopal.github.io
 
 Personal website for Karthik Venugopal.
 
-Visit: [https://Karthikvenugopal.github.io](https://Karthikvenugopal.github.io)
+Visit: [https://karthikvenugopal.github.io](https://karthikvenugopal.github.io)
