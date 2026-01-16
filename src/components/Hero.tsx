@@ -20,7 +20,7 @@ export default function Hero() {
           research paradigms and scalable deployment.
         </p>
 
-        <div className="flex gap-4 pt-4">
+        <div className="flex flex-wrap gap-4 pt-4">
           <a
             href="#projects"
             className="px-6 py-3 border border-gray-700 rounded text-sm font-mono hover:bg-white hover:text-black transition-all duration-300"
@@ -34,6 +34,20 @@ export default function Hero() {
             className="px-6 py-3 border border-transparent text-gray-400 hover:text-white text-sm font-mono transition-colors"
           >
             github --profile
+          </a>
+          <a
+            href="https://www.linkedin.com/in/karthik-venugopal/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 border border-transparent text-gray-400 hover:text-white text-sm font-mono transition-colors"
+          >
+            linkedin --connect
+          </a>
+          <a
+            href="mailto:kvenugop@usc.edu"
+            className="px-6 py-3 border border-transparent text-gray-400 hover:text-white text-sm font-mono transition-colors"
+          >
+            email --send
           </a>
         </div>
       </div>
