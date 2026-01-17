@@ -1,8 +1,8 @@
 const projects = [
   {
-    title: "End-to-End MLOps Pipeline",
-    tech: ["FastAPI", "Docker", "Kubernetes", "MLflow"],
-    description: "Automated model training and deployment pipeline with drift detection and comprehensive monitoring infrastructure.",
+    title: "MLOps Pipeline for Real-Time Fraud Detection",
+    tech: ["XGBoost", "MLflow", "Prefect", "FastAPI", "Docker", "Optuna"],
+    description: "Production-ready fraud detection system featuring automated retraining workflows, drift detection, and A/B testing of XGBoost vs. Neural Networks. Achieved 80% Precision@100.",
     id: "01",
   },
   {
