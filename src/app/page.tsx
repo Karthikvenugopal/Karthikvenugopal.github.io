@@ -1,17 +1,22 @@
 import Hero from "@/components/Hero";
-import ProjectsGrid from "@/components/ProjectsGrid";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
+import Education from "@/components/Education";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background selection:bg-accent-primary selection:text-black">
+    <div className="min-h-screen">
       <Hero />
-      <ProjectsGrid />
-      <Experience />
-      
-      <footer className="py-8 text-center text-xs font-mono text-gray-700">
-        <p>SYSTEM_STATUS: ONLINE | TERMINAL_V2.0.4</p>
+      <div className="max-w-4xl mx-auto px-6 pb-24 space-y-24">
+        <Skills />
+        <Projects />
+        <Experience />
+        <Education />
+      </div>
+      <footer className="border-t border-zinc-800 py-8 text-center text-sm text-zinc-600">
+        Karthik Venugopal &middot; Los Angeles, CA &middot; kvenugop@usc.edu
       </footer>
-    </main>
+    </div>
   );
 }

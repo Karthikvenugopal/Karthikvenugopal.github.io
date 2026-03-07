@@ -1,55 +1,62 @@
 export default function Hero() {
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center max-w-5xl mx-auto px-6">
-      <div className="space-y-6">
-        <div className="flex items-center space-x-2 text-accent-primary font-mono text-sm tracking-wide">
-          <span className="w-2 h-2 bg-accent-primary rounded-full animate-pulse"></span>
-          <span>SYSTEM_READY</span>
-        </div>
-        
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-          Karthik Venugopal
-          <span className="block text-2xl md:text-3xl font-mono text-muted mt-4 font-normal">
-            &gt; Building Scalable ML Systems_
-          </span>
-        </h1>
-        
-        <p className="max-w-2xl text-lg text-gray-400 leading-relaxed">
-          Machine Learning Engineer focused on end-to-end MLOps pipelines 
-          and production-grade AI architectures. Bridging the gap between 
-          research paradigms and scalable deployment.
-        </p>
+    <section className="max-w-4xl mx-auto px-6 pt-24 pb-20">
+      {/* Status badge */}
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-mono mb-10">
+        <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+        Open to MLE Internship &middot; Summer / Fall 2026
+      </div>
 
-        <div className="flex flex-wrap gap-4 pt-4">
-          <a
-            href="#projects"
-            className="px-6 py-3 border border-gray-700 rounded text-sm font-mono hover:bg-white hover:text-black transition-all duration-300"
-          >
-            ./view_projects.sh
-          </a>
-          <a
-            href="https://github.com/Karthikvenugopal"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 border border-transparent text-gray-400 hover:text-white text-sm font-mono transition-colors"
-          >
-            github --profile
-          </a>
-          <a
-            href="https://www.linkedin.com/in/karthik-venugopal/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 border border-transparent text-gray-400 hover:text-white text-sm font-mono transition-colors"
-          >
-            linkedin --connect
-          </a>
-          <a
-            href="mailto:kvenugop@usc.edu"
-            className="px-6 py-3 border border-transparent text-gray-400 hover:text-white text-sm font-mono transition-colors"
-          >
-            email --send
-          </a>
-        </div>
+      {/* Greeting */}
+      <p className="text-zinc-500 text-lg font-mono mb-3">Hi, I&apos;m</p>
+
+      {/* Name */}
+      <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-50 font-mono leading-none mb-4">
+        Karthik
+        <br />
+        Venugopal
+      </h1>
+
+      {/* Role */}
+      <p className="text-xl md:text-2xl text-violet-400 font-mono font-medium mb-6">
+        Machine Learning Engineer
+      </p>
+
+      {/* Bio */}
+      <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mb-2">
+        MS CS student at USC building production ML systems &mdash; MLOps pipelines,
+        LLM agents, and distributed infrastructure. Prior experience deploying ML
+        models at Samsung Research and engineering scalable backend systems at
+        Akamai Technologies.
+      </p>
+      <p className="text-zinc-600 text-sm font-mono mb-10">
+        Los Angeles, CA &nbsp;&middot;&nbsp; GPA 3.74 / 4.00
+      </p>
+
+      {/* CTAs */}
+      <div className="flex flex-wrap gap-3 mb-10">
+        <a
+          href="https://github.com/Karthikvenugopal"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-100 text-zinc-900 rounded-lg text-sm font-semibold hover:bg-white transition-colors"
+        >
+          GitHub <span className="text-zinc-500">↗</span>
+        </a>
+        <a
+          href="https://linkedin.com/in/karthik-venugopal/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-lg text-sm font-semibold hover:border-zinc-500 hover:text-zinc-100 transition-colors"
+        >
+          LinkedIn <span>↗</span>
+        </a>
+        <a
+          href="mailto:kvenugop@usc.edu"
+          className="inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-lg text-sm font-semibold hover:border-zinc-500 hover:text-zinc-100 transition-colors"
+        >
+          Email
+        </a>
       </div>
     </section>
   );
