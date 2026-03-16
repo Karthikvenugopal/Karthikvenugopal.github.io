@@ -46,6 +46,17 @@ const projects = [
   },
   {
     id: "05",
+    title: "Waste Classification with Transfer Learning",
+    github: null,
+    tech: ["Python", "TensorFlow", "Keras", "EfficientNetB0", "ResNet50", "ResNet101", "VGG16", "Transfer Learning"],
+    bullets: [
+      "Benchmarked 4 CNN architectures (EfficientNetB0, ResNet50, ResNet101, VGG16) for 9-class waste classification on the SeparatedWaste dataset (4,752 images), applying transfer learning with ImageNet pre-trained weights and data augmentation (rotation, zoom, flips, brightness shifts).",
+      "EfficientNetB0 achieved the best test accuracy of 86% (weighted F1: 0.86), outperforming ResNet50 (77%), ResNet101, and VGG16; trained custom heads with L2 regularization, batch normalization, and dropout using Adam (lr=1e-4) with early stopping.",
+      "Attained per-class F1 scores as high as 0.97 for Vegetation and 0.93 for Food Organics; saved final model checkpoints in .keras format for reproducible evaluation across all four model variants.",
+    ],
+  },
+  {
+    id: "06",
     title: "Distributed Raft Consensus Protocol",
     github: null,
     tech: ["C++20", "gRPC", "Protobuf", "Multi-threading"],
