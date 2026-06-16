@@ -55,36 +55,39 @@ const experience = [
 export default function Experience() {
   return (
     <section id="experience">
-      <SectionHeader label="experience" />
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-0 top-2 bottom-2 w-px bg-zinc-800" />
+      <SectionHeader index="03" total="04" label="Experience" />
+      <div className="border-t border-line">
+        {experience.map((exp, index) => (
+          <div
+            key={index}
+            className="grid grid-cols-12 gap-x-4 md:gap-x-8 gap-y-3 py-7 md:py-8 border-b border-line"
+          >
+            {/* Left — period + location */}
+            <div className="col-span-12 md:col-span-3 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+              <p className="text-ink/70">{exp.period}</p>
+              <p className="mt-1">{exp.location}</p>
+            </div>
 
-        <div className="space-y-10 pl-8">
-          {experience.map((exp, index) => (
-            <div key={index} className="relative group">
-              {/* Timeline dot */}
-              <div className="absolute -left-8 top-1.5 w-2 h-2 rounded-full border border-zinc-700 bg-zinc-900 group-hover:border-violet-500 group-hover:bg-violet-500/20 transition-colors" />
-
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                <h3 className="text-sm font-semibold text-zinc-100">{exp.company}</h3>
-                <span className="text-xs font-mono text-zinc-600">{exp.period}</span>
+            {/* Right — company, role, bullets */}
+            <div className="col-span-12 md:col-span-9">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 className="text-lg md:text-xl font-semibold tracking-tight">{exp.company}</h3>
+                <span className="text-sm text-muted">{exp.role}</span>
               </div>
-              <p className="text-xs font-mono text-violet-400 mb-3">{exp.role}</p>
-
-              {/* Bullets */}
-              <ul className="space-y-2">
+              <ul className="mt-4 space-y-2 max-w-3xl">
                 {exp.bullets.map((bullet, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-zinc-400 leading-relaxed">
-                    <span className="text-zinc-700 shrink-0 mt-0.5 text-xs">&#9658;</span>
+                  <li
+                    key={i}
+                    className="flex gap-3 text-sm md:text-base leading-relaxed text-ink/85"
+                  >
+                    <span className="text-ink/30 shrink-0 select-none">—</span>
                     <span>{bullet}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

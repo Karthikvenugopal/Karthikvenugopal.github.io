@@ -1,62 +1,64 @@
 export default function Hero() {
   return (
-    <section className="max-w-4xl mx-auto px-6 pt-24 pb-20">
-      {/* Status badge */}
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-400 text-xs font-mono mb-10">
-        <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-        Open to MLE Internship &middot; Summer / Fall 2026
+    <section className="mx-auto max-w-screen-xl px-6 md:px-12 lg:px-16 pt-14 md:pt-20 pb-16 md:pb-24">
+      {/* Availability */}
+      <div className="flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.25em] text-muted mb-12 md:mb-20">
+        <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse" />
+        Open to Full-Time ML/NLP Roles — Starting Early 2027
       </div>
 
-      {/* Greeting */}
-      <p className="text-zinc-500 text-lg font-mono mb-3">Hi, I&apos;m</p>
-
-      {/* Name */}
-      <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-50 font-mono leading-none mb-4">
+      {/* Name — oversized */}
+      <h1 className="font-semibold tracking-[-0.03em] leading-[0.84] text-[clamp(3.25rem,12vw,11rem)]">
         Karthik
         <br />
         Venugopal
       </h1>
 
-      {/* Role */}
-      <p className="text-xl md:text-2xl text-violet-400 font-mono font-medium mb-6">
-        Machine Learning Engineer
-      </p>
+      {/* Lower band: role + meta on the left, bio + links on the right */}
+      <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 border-t border-ink pt-8 md:pt-10">
+        <div className="md:col-span-5">
+          <p className="text-2xl md:text-3xl font-medium tracking-tight leading-[1.05]">
+            Machine Learning
+            <br />
+            <span className="text-accent">/</span> NLP Engineer
+          </p>
+          <div className="mt-7 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted leading-relaxed">
+            <p>Los Angeles, CA</p>
+            <p>USC · MS Computer Science</p>
+            <p>GPA 3.77 / 4.00</p>
+          </div>
+        </div>
 
-      {/* Bio */}
-      <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mb-2">
-        MS CS student at USC building production ML systems &mdash; MLOps pipelines,
-        LLM agents, and distributed infrastructure. Prior experience deploying ML
-        models at Samsung Research and engineering scalable backend systems at
-        Akamai Technologies.
-      </p>
-      <p className="text-zinc-600 text-sm font-mono mb-10">
-        Los Angeles, CA &nbsp;&middot;&nbsp; GPA 3.74 / 4.00
-      </p>
+        <div className="md:col-span-7">
+          <p className="text-lg md:text-xl leading-relaxed max-w-2xl text-ink/90">
+            MS CS student at USC building production ML systems — MLOps pipelines,
+            LLM agents, and distributed infrastructure. Prior experience deploying
+            ML models at Samsung Research and engineering scalable backend systems
+            at Akamai Technologies.
+          </p>
 
-      {/* CTAs */}
-      <div className="flex flex-wrap gap-3 mb-10">
-        <a
-          href="https://github.com/Karthikvenugopal"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-100 text-zinc-900 rounded-lg text-sm font-semibold hover:bg-white transition-colors"
-        >
-          GitHub <span className="text-zinc-500">↗</span>
-        </a>
-        <a
-          href="https://linkedin.com/in/karthik-venugopal/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-lg text-sm font-semibold hover:border-zinc-500 hover:text-zinc-100 transition-colors"
-        >
-          LinkedIn <span>↗</span>
-        </a>
-        <a
-          href="mailto:kvenugop@usc.edu"
-          className="inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-700 text-zinc-300 rounded-lg text-sm font-semibold hover:border-zinc-500 hover:text-zinc-100 transition-colors"
-        >
-          Email
-        </a>
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[0.7rem] uppercase tracking-[0.18em]">
+            <a
+              href="https://github.com/Karthikvenugopal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-rule pb-1"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://linkedin.com/in/karthik-venugopal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-rule pb-1"
+            >
+              LinkedIn ↗
+            </a>
+            <a href="mailto:kvenugop@usc.edu" className="link-rule pb-1">
+              Email ↗
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

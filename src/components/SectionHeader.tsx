@@ -1,11 +1,24 @@
-export default function SectionHeader({ label }: { label: string }) {
+export default function SectionHeader({
+  index,
+  total,
+  label,
+}: {
+  index: string;
+  total: string;
+  label: string;
+}) {
   return (
-    <div className="flex items-center gap-4 mb-10">
-      <h2 className="text-base font-mono text-zinc-100 shrink-0">
-        <span className="text-violet-400">~/</span>
-        {label}
-      </h2>
-      <div className="h-px bg-zinc-800 flex-1" />
-    </div>
+    <header className="mb-10 md:mb-14 border-t-2 border-ink pt-4">
+      <div className="flex items-baseline justify-between gap-4">
+        <h2 className="font-mono text-[0.7rem] sm:text-xs uppercase tracking-[0.3em]">
+          <span className="text-accent">{index}</span>
+          <span className="text-line mx-2">/</span>
+          {label}
+        </h2>
+        <span className="font-mono text-[0.7rem] sm:text-xs text-muted tabular-nums shrink-0">
+          {index} — {total}
+        </span>
+      </div>
+    </header>
   );
 }

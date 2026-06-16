@@ -3,67 +3,82 @@ import SectionHeader from "./SectionHeader";
 const projects = [
   {
     id: "01",
-    title: "Multi-Task Sequential Recommendation (MMoE)",
-    github: "https://github.com/Karthikvenugopal/Multi-Task-Sequential-Recommendation",
-    tech: ["Python", "PyTorch", "SASRec", "MMoE", "ONNX Runtime", "FastAPI", "MLflow", "Docker"],
+    title: "Multimodal RAG Agent",
+    github: "https://github.com/Karthikvenugopal/nim-multimodal-agent",
+    tech: ["Python", "LangGraph", "NVIDIA NIM", "Vision-Language Model (Nemotron)", "Llama-Nemotron", "RAG"],
     bullets: [
-      "Built a multi-task sequential recommender on the Amazon Reviews 2023 (Movies & TV) dataset, jointly optimizing CTR prediction and rating regression using a SASRec transformer backbone extended with an MMoE layer (4 experts, 2 task-specific gates), benchmarked against single-task and Shared-Bottom MTL baselines.",
-      "MMoE achieved NDCG@10 of 0.641 and HR@10 of 0.826, outperforming the single-task SASRec baseline by 4.7% and 3.5% respectively, while simultaneously predicting user ratings with MAE of 0.68.",
-      "Exported the best MMoE checkpoint to ONNX and served recommendations via FastAPI with ~12ms inference latency; tracked all three model variants with MLflow for reproducible experiment comparison.",
+      "Built a multimodal agentic RAG system with LangGraph that routes retrieved figures through a vision-language model (Nemotron) and fuses them with text passages to answer questions a text-only pipeline cannot. Includes a faithfulness-gated self-correction loop that escalates to force_vision, query rewrite, or question decomposition before abstaining on unanswerable inputs.",
+      "Ran a vision-ablation benchmark scored by an LLM-as-judge: +28.6 points overall accuracy and +60 on figure-only questions versus a vision-off baseline. Self-correction loop triggered on 9 of 14 responses, recovering 8 of 9 ungrounded answers with 1 correct abstention. 26 tests, CI green.",
     ],
   },
   {
     id: "02",
-    title: "Real-Time Content Moderation & Safety Pipeline",
-    github: "https://github.com/Karthikvenugopal/Real-Time-Content-Moderation-and-Safety",
-    tech: ["Python", "Kafka (Redpanda)", "Faust", "Llama 3.2", "sentence-transformers", "Redis", "Docker", "Streamlit"],
+    title: "Grounded RAG Pipeline with Faithfulness Evaluation",
+    github: "https://github.com/Karthikvenugopal/cohere-grounded-rag",
+    tech: ["Python", "Cohere Embed v4", "Rerank v3.5", "Command", "RAG"],
     bullets: [
-      "Built an end-to-end streaming ML pipeline ingesting 1\u20135k posts/minute from the BlueSky Jetstream WebSocket firehose and YouTube Shorts API into Redpanda (Kafka-compatible), orchestrating per-event embedding, LLM classification, and online topic clustering via a Faust async agent.",
-      "Deployed a 5-class content safety classifier (safe, spam, hate, nsfw, violence) using Llama 3.2 3B via Ollama with temperature=0 for deterministic outputs; implemented an 8-second timeout with fail-open fallback to sustain pipeline throughput under peak load.",
-      "Implemented online topic modeling with MiniBatchKMeans (partial_fit, n=20 clusters) on 384-dim sentence-transformer embeddings, persisting trend metrics in Redis TimeSeries and surfacing live moderation rates on a Streamlit dashboard with 5-second auto-refresh.",
+      "Built a grounded RAG pipeline using dense embeddings and cross-encoder reranking to retrieve and anchor LLM responses with inline citations, ensuring every factual claim in the answer maps back to a specific retrieved source passage.",
+      "Implemented a three-signal faithfulness evaluation layer \u2014 citation coverage, grounded-sentence rate, and LLM-as-judge agreement \u2014 to detect unsupported claims in generated answers and surface grounding gaps before output is returned.",
     ],
   },
   {
     id: "03",
-    title: "End-to-End MLOps Pipeline for Fraud Detection",
-    github: "https://github.com/Karthikvenugopal/End-to-End-MLOps-Pipeline-for-Fraud-Detection",
-    tech: ["Python", "XGBoost", "MLflow", "Prefect", "FastAPI", "Docker", "Optuna", "ONNX Runtime"],
+    title: "LLM Hallucination Detection Pipeline",
+    github: null,
+    tech: ["Python", "RoBERTa", "HuggingFace Transformers", "NLI", "PyTorch", "FastAPI"],
     bullets: [
-      "Achieved 80% Precision@100 in fraud detection by benchmarking XGBoost vs. Neural Networks using Optuna (100+ trials), engineering features to handle class imbalance in financial transactions.",
-      "Engineered an automated MLOps continuous training pipeline serving models via Docker and FastAPI; integrated Alibi-Detect for data drift monitoring to trigger Prefect retraining workflows, ensuring 24/7 model reliability and eliminating manual maintenance.",
-      "Reduced model inference latency by 35% (150ms \u2192 97ms) by serving XGBoost with ONNX Runtime and implementing request batching in FastAPI, scaling to support 500+ requests/minute under stress testing.",
+      "Built a claim-level hallucination detection system by fine-tuning a RoBERTa NLI classifier for factual consistency scoring \u2014 decomposing LLM outputs into atomic claims and scoring each against source context independently, enabling span-level attribution of unsupported content.",
+      "Conducted systematic evaluation against prompted LLM baselines (GPT-3.5, LLaMA-2) across multiple decoding strategies; NLI classifier achieved F1 0.87, outperforming LLM judges on out-of-distribution factual claims while remaining model-agnostic and 10x cheaper to run. Benchmarked across LLaMA-2, Mistral, GPT-3.5, and Falcon \u2014 surfaced model-specific failure patterns with different models breaking down on distinct claim types.",
     ],
   },
   {
     id: "04",
     title: "Multi-Source Research Analyst Agent",
     github: "https://github.com/Karthikvenugopal/Multi-Source-Research-Analyst-Agent",
-    tech: ["Python", "LangGraph", "OpenAI API", "Tavily Search", "Weaviate", "Docker", "FastAPI"],
+    tech: ["Python", "LangGraph", "Weaviate", "Tavily", "OpenAI API", "Docker", "FastAPI"],
     bullets: [
-      "Built a stateful multi-agent system using LangGraph to automate web and academic API queries for complex question answering, improving accuracy by 30% and reducing manual research effort by 50%.",
-      "Containerized the full application with Docker and exposed a FastAPI endpoint, supporting 100+ concurrent requests and demonstrating production-ready MLOps principles.",
+      "Built a stateful multi-agent system with LangGraph that coordinates web and academic search (Tavily) with Weaviate dense retrieval for complex multi-hop question answering, with an LLM-as-judge faithfulness loop scoring each answer's grounding against retrieved sources at every reasoning step.",
+      "Containerized the application with Docker and served it via a FastAPI endpoint supporting 100+ concurrent requests; per-step faithfulness scores surfaced reasoning failures and grounding gaps across the agent graph, improving answer accuracy by 30%.",
     ],
   },
   {
     id: "05",
-    title: "Waste Classification with Transfer Learning",
-    github: null,
-    tech: ["Python", "TensorFlow", "Keras", "EfficientNetB0", "ResNet50", "ResNet101", "VGG16", "Transfer Learning"],
+    title: "Real-Time Content Moderation Pipeline",
+    github: "https://github.com/Karthikvenugopal/Real-Time-Content-Moderation-and-Safety",
+    tech: ["Python", "Kafka (Redpanda)", "Faust", "Llama 3.2", "sentence-transformers", "Redis", "Docker", "Streamlit"],
     bullets: [
-      "Benchmarked 4 CNN architectures (EfficientNetB0, ResNet50, ResNet101, VGG16) for 9-class waste classification on the SeparatedWaste dataset (4,752 images), applying transfer learning with ImageNet pre-trained weights and data augmentation (rotation, zoom, flips, brightness shifts).",
-      "EfficientNetB0 achieved the best test accuracy of 86% (weighted F1: 0.86), outperforming ResNet50 (77%), ResNet101, and VGG16; trained custom heads with L2 regularization, batch normalization, and dropout using Adam (lr=1e-4) with early stopping.",
-      "Attained per-class F1 scores as high as 0.97 for Vegetation and 0.93 for Food Organics; saved final model checkpoints in .keras format for reproducible evaluation across all four model variants.",
+      "Built an end-to-end streaming ML pipeline ingesting 1,000-5,000 posts/minute from live data sources into Redpanda (Kafka-compatible), orchestrating per-event embedding, LLM classification, and online topic clustering via a Faust async agent.",
+      "Deployed a 5-class content safety classifier (safe, spam, hate, NSFW, violence) using Llama 3.2 3B via Ollama with fail-open fallback under peak load. Designed separate classifiers per harm dimension with per-class confidence calibration; persisted trend metrics in Redis TimeSeries and surfaced live moderation rates on a Streamlit dashboard.",
     ],
   },
   {
     id: "06",
-    title: "Distributed Raft Consensus Protocol",
-    github: null,
-    tech: ["C++20", "gRPC", "Protobuf", "Multi-threading"],
+    title: "MLOps Fraud Detection Pipeline",
+    github: "https://github.com/Karthikvenugopal/End-to-End-MLOps-Pipeline-for-Fraud-Detection",
+    tech: ["Python", "XGBoost", "MLflow", "Prefect", "Alibi-Detect", "ONNX Runtime", "FastAPI", "Docker"],
     bullets: [
-      "Developed a fault-tolerant distributed consensus node in C++20 by defining Protocol Buffer schemas and implementing gRPC client-server architecture, establishing a 3-node cluster with 100% reliable peer-to-peer communication.",
-      "Orchestrated thread-safe state machine transitions and concurrent RPC handling (RequestVote, AppendEntries) using mutexes, ensuring 0 data race conditions across 50+ automated network partition and disconnection test cases.",
-      "Synchronized asynchronous heartbeat loops and randomized election timeouts to mitigate split votes, achieving deterministic leader election within a 0.5\u20131.0 second latency window under stable network conditions.",
+      "Built an end-to-end model lifecycle pipeline with drift detection (Alibi-Detect), automated retraining (Prefect), and experiment tracking (MLflow); ONNX export for cross-platform inference achieving 94% F1 and sub-10ms inference latency.",
+      "Reduced model inference latency by 35% (150ms to 97ms) by serving XGBoost with ONNX Runtime and implementing request batching in FastAPI, scaling to 500+ requests/minute under stress testing.",
+    ],
+  },
+  {
+    id: "07",
+    title: "RaftScope: Distributed Raft Consensus",
+    github: null,
+    tech: ["C++20", "gRPC", "Protocol Buffers", "Multi-threading", "D3.js"],
+    bullets: [
+      "Implemented the Raft consensus protocol from scratch in C++20 with a gRPC and Protocol Buffers RPC layer covering RequestVote and AppendEntries, running a multi-node cluster with leader election, log replication, and thread-safe state-machine transitions using mutexes. Built with two collaborators for CSCI 546 (Distributed Systems) at USC.",
+      "Instrumented the cluster with Lamport logical clocks and built a D3.js browser-based space-time visualizer to trace message ordering and leader changes. All 6 integration tests pass, covering network partitions and node failures.",
+    ],
+  },
+  {
+    id: "08",
+    title: "NewsInterview LangGraph Agent",
+    github: null,
+    tech: ["Python", "LangGraph", "Qwen-2.5-7B"],
+    bullets: [
+      "Built a training-free interviewer agent as an alternative to RL fine-tuning (Huang et al., EMNLP 2025), using the same Qwen-2.5-7B base model to conduct follow-up question generation and information elicitation in a news interview setting without any fine-tuning.",
+      "Verified on n=20 cases: 78.8% acknowledgement rate versus 53.8% (CoT baseline) and 35.0% (prompt-only baseline), with information-item recall effectively flat across conditions \u2014 demonstrating that structured prompting matches fine-tuned behavior on acknowledgement without the training cost.",
     ],
   },
 ];
@@ -71,55 +86,58 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects">
-      <SectionHeader label="projects" />
-      <div className="space-y-5">
+      <SectionHeader index="02" total="04" label="Selected Work" />
+      <div className="border-t border-line">
         {projects.map((project) => (
-          <div
+          <article
             key={project.id}
-            className="border border-zinc-800 bg-zinc-900/40 rounded-xl p-6 hover:border-zinc-700 transition-colors"
+            className="grid grid-cols-12 gap-x-4 md:gap-x-8 gap-y-4 py-8 md:py-10 border-b border-line"
           >
-            {/* Header */}
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <div className="flex items-baseline gap-3">
-                <span className="text-xs font-mono text-zinc-600 shrink-0">{project.id}</span>
-                <h3 className="text-base font-semibold text-zinc-100 leading-snug">
-                  {project.title}
-                </h3>
-              </div>
+            {/* Index number */}
+            <div className="col-span-12 md:col-span-1">
+              <span className="font-mono text-sm text-accent tabular-nums">{project.id}</span>
+            </div>
+
+            {/* Main column */}
+            <div className="col-span-12 md:col-span-8">
+              <h3 className="text-2xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.05]">
+                {project.title}
+              </h3>
+              <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted leading-relaxed">
+                {project.tech.map((t, i) => (
+                  <span key={t}>
+                    {i > 0 && <span className="text-line mx-1.5">·</span>}
+                    {t}
+                  </span>
+                ))}
+              </p>
+              <ul className="mt-5 space-y-3 max-w-3xl">
+                {project.bullets.map((bullet, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-3 text-sm md:text-base leading-relaxed text-ink/85"
+                  >
+                    <span className="text-ink/30 shrink-0 select-none">—</span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right meta — GitHub link only when public */}
+            <div className="col-span-12 md:col-span-3 md:text-right">
               {project.github && (
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 text-xs font-mono text-violet-400 hover:text-violet-300 transition-colors"
+                  className="link-rule pb-1 inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em]"
                 >
-                  GitHub&nbsp;↗
+                  GitHub ↗
                 </a>
               )}
             </div>
-
-            {/* Tech chips */}
-            <div className="flex flex-wrap gap-1.5 mb-5">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="px-2 py-0.5 bg-zinc-800 text-zinc-400 text-xs rounded font-mono"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            {/* Bullets */}
-            <ul className="space-y-2.5">
-              {project.bullets.map((bullet, i) => (
-                <li key={i} className="flex gap-3 text-sm text-zinc-400 leading-relaxed">
-                  <span className="text-violet-500 shrink-0 mt-0.5 text-xs">&#9658;</span>
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          </article>
         ))}
       </div>
     </section>

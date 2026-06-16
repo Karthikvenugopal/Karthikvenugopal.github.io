@@ -32,23 +32,24 @@ const skills = [
 export default function Skills() {
   return (
     <section id="skills">
-      <SectionHeader label="skills" />
-      <div className="space-y-5">
+      <SectionHeader index="01" total="04" label="Skills & Tools" />
+      <div className="border-t border-line">
         {skills.map((group) => (
-          <div key={group.category} className="flex flex-col sm:flex-row gap-3">
-            <span className="text-xs font-mono text-zinc-500 w-32 shrink-0 pt-1">
+          <div
+            key={group.category}
+            className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 py-5 border-b border-line"
+          >
+            <div className="md:col-span-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted pt-1">
               {group.category}
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <span
-                  key={item}
-                  className="px-2.5 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs rounded-md font-mono hover:border-zinc-600 hover:text-zinc-100 transition-colors"
-                >
+            </div>
+            <p className="md:col-span-9 text-base md:text-lg leading-relaxed">
+              {group.items.map((item, i) => (
+                <span key={item}>
+                  {i > 0 && <span className="text-line mx-2">·</span>}
                   {item}
                 </span>
               ))}
-            </div>
+            </p>
           </div>
         ))}
       </div>

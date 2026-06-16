@@ -5,7 +5,7 @@ const education = [
     school: "University of Southern California",
     shortName: "USC",
     degree: "MS in Computer Science",
-    gpa: "3.74 / 4.00",
+    gpa: "3.77 / 4.00",
     period: "Jan 2025 \u2014 Dec 2026",
     location: "Los Angeles, CA",
     courses: [
@@ -37,37 +37,45 @@ const education = [
 export default function Education() {
   return (
     <section id="education">
-      <SectionHeader label="education" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {education.map((edu) => (
+      <SectionHeader index="04" total="04" label="Education" />
+      <div className="grid grid-cols-1 md:grid-cols-2 border-t border-line">
+        {education.map((edu, i) => (
           <div
             key={edu.shortName}
-            className="border border-zinc-800 bg-zinc-900/40 rounded-xl p-6 hover:border-zinc-700 transition-colors"
+            className={`py-8 border-b border-line ${
+              i === 0 ? "md:pr-12" : "md:pl-12 md:border-l md:border-line"
+            }`}
           >
-            <div className="flex items-start justify-between gap-2 mb-1">
-              <span className="text-xs font-mono text-violet-400 font-semibold">{edu.shortName}</span>
-              <span className="text-xs font-mono text-zinc-600">{edu.period}</span>
+            <div className="flex items-baseline justify-between gap-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+              <span className="text-accent">{edu.shortName}</span>
+              <span>{edu.period}</span>
             </div>
-            <h3 className="text-sm font-semibold text-zinc-100 mb-0.5">{edu.school}</h3>
-            <p className="text-xs text-zinc-500 mb-4">{edu.degree} &middot; {edu.location}</p>
+            <h3 className="mt-4 text-xl md:text-2xl font-semibold tracking-tight">{edu.school}</h3>
+            <p className="mt-1 text-sm text-muted">
+              {edu.degree} · {edu.location}
+            </p>
 
-            <div className="flex items-baseline gap-2 mb-5">
-              <span className="text-2xl font-bold font-mono text-amber-400">{edu.gpa}</span>
-              <span className="text-xs text-zinc-600 font-mono">GPA</span>
+            <div className="mt-6 flex items-baseline gap-3">
+              <span className="text-4xl md:text-5xl font-semibold tabular-nums tracking-tight">
+                {edu.gpa}
+              </span>
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted">
+                GPA
+              </span>
             </div>
 
-            <div>
-              <p className="text-xs font-mono text-zinc-600 mb-2">Coursework</p>
-              <div className="flex flex-wrap gap-1.5">
-                {edu.courses.map((course) => (
-                  <span
-                    key={course}
-                    className="px-2 py-0.5 bg-zinc-800/80 text-zinc-400 text-xs rounded font-mono"
-                  >
+            <div className="mt-6">
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted mb-2">
+                Coursework
+              </p>
+              <p className="text-sm leading-relaxed text-ink/80">
+                {edu.courses.map((course, j) => (
+                  <span key={course}>
+                    {j > 0 && <span className="text-line mx-1.5">·</span>}
                     {course}
                   </span>
                 ))}
-              </div>
+              </p>
             </div>
           </div>
         ))}
