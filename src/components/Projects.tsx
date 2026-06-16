@@ -24,7 +24,7 @@ const projects = [
   {
     id: "03",
     title: "LLM Hallucination Detection Pipeline",
-    github: null,
+    github: "https://github.com/Karthikvenugopal/Claim-Level-Halluciantion-Detection",
     tech: ["Python", "RoBERTa", "HuggingFace Transformers", "NLI", "PyTorch", "FastAPI"],
     bullets: [
       "Built a claim-level hallucination detection system by fine-tuning a RoBERTa NLI classifier for factual consistency scoring \u2014 decomposing LLM outputs into atomic claims and scoring each against source context independently, enabling span-level attribution of unsupported content.",
@@ -74,7 +74,7 @@ const projects = [
   {
     id: "08",
     title: "NewsInterview LangGraph Agent",
-    github: null,
+    github: "https://github.com/Karthikvenugopal/newsinterview-langgraph-agent",
     tech: ["Python", "LangGraph", "Qwen-2.5-7B"],
     bullets: [
       "Built a training-free interviewer agent as an alternative to RL fine-tuning (Huang et al., EMNLP 2025), using the same Qwen-2.5-7B base model to conduct follow-up question generation and information elicitation in a news interview setting without any fine-tuning.",
