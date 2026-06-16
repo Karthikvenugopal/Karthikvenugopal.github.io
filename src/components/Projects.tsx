@@ -103,14 +103,14 @@ export default function Projects() {
               <h3 className="text-2xl md:text-4xl font-semibold tracking-[-0.02em] leading-[1.05]">
                 {project.title}
               </h3>
-              <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted leading-relaxed">
+              <div className="mt-3 flex flex-wrap items-baseline gap-x-1.5 gap-y-1 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted leading-relaxed">
                 {project.tech.map((t, i) => (
-                  <span key={t}>
-                    {i > 0 && <span className="text-line mx-1.5">·</span>}
+                  <span key={t} className="inline-flex items-baseline whitespace-nowrap">
+                    {i > 0 && <span className="text-line mr-1.5" aria-hidden="true">·</span>}
                     {t}
                   </span>
                 ))}
-              </p>
+              </div>
               <ul className="mt-5 space-y-3 max-w-3xl">
                 {project.bullets.map((bullet, i) => (
                   <li

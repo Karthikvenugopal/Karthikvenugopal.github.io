@@ -42,14 +42,14 @@ export default function Skills() {
             <div className="md:col-span-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted pt-1">
               {group.category}
             </div>
-            <p className="md:col-span-9 text-base md:text-lg leading-relaxed">
+            <div className="md:col-span-9 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-base md:text-lg leading-relaxed">
               {group.items.map((item, i) => (
-                <span key={item}>
-                  {i > 0 && <span className="text-line mx-2">·</span>}
+                <span key={item} className="inline-flex items-baseline whitespace-nowrap">
+                  {i > 0 && <span className="text-line mr-2" aria-hidden="true">·</span>}
                   {item}
                 </span>
               ))}
-            </p>
+            </div>
           </div>
         ))}
       </div>

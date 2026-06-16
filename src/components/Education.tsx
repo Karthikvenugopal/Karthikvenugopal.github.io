@@ -68,14 +68,14 @@ export default function Education() {
               <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted mb-2">
                 Coursework
               </p>
-              <p className="text-sm leading-relaxed text-ink/80">
+              <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-1 text-sm leading-relaxed text-ink/80">
                 {edu.courses.map((course, j) => (
-                  <span key={course}>
-                    {j > 0 && <span className="text-line mx-1.5">·</span>}
+                  <span key={course} className="inline-flex items-baseline whitespace-nowrap">
+                    {j > 0 && <span className="text-line mr-1.5" aria-hidden="true">·</span>}
                     {course}
                   </span>
                 ))}
-              </p>
+              </div>
             </div>
           </div>
         ))}
