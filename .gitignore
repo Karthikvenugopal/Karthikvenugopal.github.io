@@ -46,3 +46,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# visitor-tracking setup docs & Apps Script source (keep out of the public repo)
+/tracking/

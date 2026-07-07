@@ -39,7 +39,7 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[0.7rem] uppercase tracking-[0.18em]">
             <a
-              href="https://github.com/Karthikvenugopal"
+              href="/go/github?src=site"
               target="_blank"
               rel="noopener noreferrer"
               className="link-rule pb-1"
@@ -47,7 +47,7 @@ export default function Hero() {
               GitHub ↗
             </a>
             <a
-              href="https://linkedin.com/in/karthik-venugopal/"
+              href="/go/linkedin?src=site"
               target="_blank"
               rel="noopener noreferrer"
               className="link-rule pb-1"
