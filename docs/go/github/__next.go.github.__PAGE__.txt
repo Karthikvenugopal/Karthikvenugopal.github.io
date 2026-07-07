@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[18602,["/_next/static/chunks/d3901321452d3775.js","/_next/static/chunks/ea87b53437f86a33.js"],"default"]
+2:I[18602,["/_next/static/chunks/20e395e5d8a8cb44.js","/_next/static/chunks/ea87b53437f86a33.js"],"default"]
 3:I[2256,["/_next/static/chunks/4ed0fe07d04155e6.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"fKLuFnSwu2j6DpkeyJYMf","rsc":["$","$1","c",{"children":[["$","$L2",null,{"label":"github","destination":"https://github.com/Karthikvenugopal"}],[["$","script","script-0",{"src":"/_next/static/chunks/ea87b53437f86a33.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"QCfCk1T6FJyLOGJMriO1g","rsc":["$","$1","c",{"children":[["$","$L2",null,{"label":"github","destination":"https://github.com/Karthikvenugopal"}],[["$","script","script-0",{"src":"/_next/static/chunks/ea87b53437f86a33.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
