@@ -1,8 +1,18 @@
-import SectionHeader from "./SectionHeader";
+"use client";
 
-const projects = [
+import { useEffect, useState } from "react";
+import SectionHeader from "./SectionHeader";
+import {
+  GITHUB_REPOSITORIES_URL,
+  isGitHubRepository,
+  mergeGitHubProjects,
+  type GitHubRepository,
+  type PortfolioProject,
+} from "@/lib/github-projects";
+
+const fallbackProjects: PortfolioProject[] = [
   {
-    id: "01",
+    repoId: 1266702475,
     title: "Multimodal RAG Agent",
     github: "https://github.com/Karthikvenugopal/nim-multimodal-agent",
     tech: ["Python", "LangGraph", "NVIDIA NIM", "Vision-Language Model (Nemotron)", "Llama-Nemotron", "RAG"],
@@ -12,7 +22,7 @@ const projects = [
     ],
   },
   {
-    id: "02",
+    repoId: 1264389540,
     title: "Grounded RAG Pipeline with Faithfulness Evaluation",
     github: "https://github.com/Karthikvenugopal/cohere-grounded-rag",
     tech: ["Python", "Cohere Embed v4", "Rerank v3.5", "Command", "RAG"],
@@ -22,7 +32,7 @@ const projects = [
     ],
   },
   {
-    id: "03",
+    repoId: 1230505652,
     title: "LLM Hallucination Detection Pipeline",
     github: "https://github.com/Karthikvenugopal/Claim-Level-Halluciantion-Detection",
     tech: ["Python", "RoBERTa", "HuggingFace Transformers", "NLI", "PyTorch", "FastAPI"],
@@ -32,7 +42,7 @@ const projects = [
     ],
   },
   {
-    id: "04",
+    repoId: 1065587415,
     title: "Multi-Source Research Analyst Agent",
     github: "https://github.com/Karthikvenugopal/Multi-Source-Research-Analyst-Agent",
     tech: ["Python", "LangGraph", "Weaviate", "Tavily", "OpenAI API", "Docker", "FastAPI"],
@@ -42,7 +52,7 @@ const projects = [
     ],
   },
   {
-    id: "05",
+    repoId: 1172178983,
     title: "Real-Time Content Moderation Pipeline",
     github: "https://github.com/Karthikvenugopal/Real-Time-Content-Moderation-and-Safety",
     tech: ["Python", "Kafka (Redpanda)", "Faust", "Llama 3.2", "sentence-transformers", "Redis", "Docker", "Streamlit"],
@@ -52,7 +62,7 @@ const projects = [
     ],
   },
   {
-    id: "06",
+    repoId: 1071206007,
     title: "MLOps Fraud Detection Pipeline",
     github: "https://github.com/Karthikvenugopal/End-to-End-MLOps-Pipeline-for-Fraud-Detection",
     tech: ["Python", "XGBoost", "MLflow", "Prefect", "Alibi-Detect", "ONNX Runtime", "FastAPI", "Docker"],
@@ -62,7 +72,6 @@ const projects = [
     ],
   },
   {
-    id: "07",
     title: "RaftScope: Distributed Raft Consensus",
     github: null,
     tech: ["C++20", "gRPC", "Protocol Buffers", "Multi-threading", "D3.js"],
@@ -72,7 +81,7 @@ const projects = [
     ],
   },
   {
-    id: "08",
+    repoId: 1257995326,
     title: "NewsInterview LangGraph Agent",
     github: "https://github.com/Karthikvenugopal/newsinterview-langgraph-agent",
     tech: ["Python", "LangGraph", "Qwen-2.5-7B"],
@@ -83,19 +92,101 @@ const projects = [
   },
 ];
 
+const GITHUB_CACHE_KEY = "kv_github_projects_v1";
+const GITHUB_CACHE_TTL_MS = 15 * 60 * 1000;
+
+interface GitHubCache {
+  fetchedAt: number;
+  repositories: GitHubRepository[];
+}
+
+function readGitHubCache(): GitHubCache | null {
+  try {
+    const value = JSON.parse(localStorage.getItem(GITHUB_CACHE_KEY) ?? "null") as
+      | Partial<GitHubCache>
+      | null;
+
+    if (
+      !value ||
+      typeof value.fetchedAt !== "number" ||
+      Date.now() - value.fetchedAt > GITHUB_CACHE_TTL_MS ||
+      !Array.isArray(value.repositories)
+    ) {
+      return null;
+    }
+
+    const repositories = value.repositories.filter(isGitHubRepository);
+    return repositories.length > 0
+      ? { fetchedAt: value.fetchedAt, repositories }
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeGitHubCache(repositories: GitHubRepository[]): void {
+  try {
+    localStorage.setItem(
+      GITHUB_CACHE_KEY,
+      JSON.stringify({ fetchedAt: Date.now(), repositories }),
+    );
+  } catch {
+    // Storage can be unavailable in private browsing; live data still works.
+  }
+}
+
 export default function Projects() {
+  const [projects, setProjects] = useState(fallbackProjects);
+
+  useEffect(() => {
+    const cached = readGitHubCache();
+    if (cached) {
+      setProjects(mergeGitHubProjects(fallbackProjects, cached.repositories));
+      return;
+    }
+
+    const controller = new AbortController();
+
+    async function syncProjects() {
+      try {
+        const response = await fetch(GITHUB_REPOSITORIES_URL, {
+          headers: { Accept: "application/vnd.github+json" },
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
+
+        const payload: unknown = await response.json();
+        if (!Array.isArray(payload)) throw new Error("Unexpected GitHub response");
+
+        const repositories = payload.filter(isGitHubRepository);
+        if (repositories.length === 0) throw new Error("No GitHub repositories found");
+
+        writeGitHubCache(repositories);
+        setProjects(mergeGitHubProjects(fallbackProjects, repositories));
+      } catch {
+        // Keep the statically rendered portfolio intact if GitHub is unavailable.
+      }
+    }
+
+    syncProjects();
+    return () => controller.abort();
+  }, []);
+
   return (
     <section id="projects">
       <SectionHeader index="02" total="04" label="Selected Work" />
       <div className="border-t border-line">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <article
-            key={project.id}
+            key={project.repoId ?? project.title}
             className="grid grid-cols-12 gap-x-4 md:gap-x-8 gap-y-4 py-8 md:py-10 border-b border-line"
           >
             {/* Index number */}
             <div className="col-span-12 md:col-span-1">
-              <span className="font-mono text-sm text-accent tabular-nums">{project.id}</span>
+              <span className="font-mono text-sm text-accent tabular-nums">
+                {String(index + 1).padStart(2, "0")}
+              </span>
             </div>
 
             {/* Main column */}

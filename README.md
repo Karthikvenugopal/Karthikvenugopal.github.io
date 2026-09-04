@@ -1,4 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Karthik Venugopal's portfolio
+
+This is a statically exported Next.js portfolio hosted with GitHub Pages.
+
+## GitHub project sync
+
+The **Selected Work** section uses the public GitHub repository API in the
+browser, so repository updates do not require a portfolio code change or a new
+deployment.
+
+- Update a repository's **Description**, primary language, or **Topics** on
+  GitHub and the card updates on the next uncached visit (within 15 minutes).
+- New public, non-fork repositories appear automatically once they have a
+  description. Archived repositories disappear automatically.
+- The GitHub profile repository, this Pages repository, `CoronaBot`, and
+  `ScreenRecorder` are intentionally excluded in
+  `src/lib/github-projects.ts` so the section remains selected work.
+- The existing hard-coded cards are retained as a no-network fallback. Their
+  second bullets are editorial results/case-study details and are preserved
+  when live GitHub metadata loads.
+
+The sync uses no token and fails silently back to the static portfolio if the
+GitHub API is unavailable or rate-limited. Visitor and redirect tracking are
+independent and unchanged.
 
 ## Getting Started
 
@@ -16,7 +39,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the checks with:
+
+```bash
+npm test
+npm run lint
+npm run build
+```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
