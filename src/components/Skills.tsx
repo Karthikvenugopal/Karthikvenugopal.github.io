@@ -32,7 +32,7 @@ const skills = [
 export default function Skills() {
   return (
     <section id="skills">
-      <SectionHeader index="01" total="04" label="Skills & Tools" />
+      <SectionHeader index="01" total="05" label="Skills & Tools" />
       <div className="border-t border-line">
         {skills.map((group) => (
           <div

@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import OpenSource from "@/components/OpenSource";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 
@@ -16,8 +17,9 @@ export default function Home() {
           >
             Karthik Venugopal
           </a>
-          <nav className="hidden sm:flex items-center gap-6 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+          <nav className="hidden md:flex items-center gap-6 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
             <a href="#projects" className="hover:text-accent transition-colors">Work</a>
+            <a href="#open-source" className="hover:text-accent transition-colors">Open Source</a>
             <a href="#experience" className="hover:text-accent transition-colors">Experience</a>
             <a href="#education" className="hover:text-accent transition-colors">Education</a>
             <a href="mailto:kvenugop@usc.edu" className="hover:text-accent transition-colors">Contact</a>
@@ -30,6 +32,7 @@ export default function Home() {
       <main className="mx-auto max-w-screen-xl px-6 md:px-12 lg:px-16 pb-28 space-y-24 md:space-y-32">
         <Skills />
         <Projects />
+        <OpenSource />
         <Experience />
         <Education />
       </main>

@@ -37,7 +37,7 @@ const education = [
 export default function Education() {
   return (
     <section id="education">
-      <SectionHeader index="04" total="04" label="Education" />
+      <SectionHeader index="05" total="05" label="Education" />
       <div className="grid grid-cols-1 md:grid-cols-2 border-t border-line">
         {education.map((edu, i) => (
           <div

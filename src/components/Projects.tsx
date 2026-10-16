@@ -175,7 +175,7 @@ export default function Projects() {
 
   return (
     <section id="projects">
-      <SectionHeader index="02" total="04" label="Selected Work" />
+      <SectionHeader index="02" total="05" label="Selected Work" />
       <div className="border-t border-line">
         {projects.map((project, index) => (
           <article

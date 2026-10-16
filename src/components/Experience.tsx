@@ -55,7 +55,7 @@ const experience = [
 export default function Experience() {
   return (
     <section id="experience">
-      <SectionHeader index="03" total="04" label="Experience" />
+      <SectionHeader index="04" total="05" label="Experience" />
       <div className="border-t border-line">
         {experience.map((exp, index) => (
           <div
